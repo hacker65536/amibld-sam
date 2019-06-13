@@ -1,0 +1,8 @@
+packaged.yaml
+api/api/api
+api/cwe/cwe
+api/dynamodb/data/shared-local-instance.db
+*.swp
+slack_secrets
+config
+.vscode/

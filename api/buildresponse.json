@@ -1,0 +1,125 @@
+{
+  Build: {
+    Arn: "arn:aws:codebuild:us-east-1:910039619599:build/amibldg-codebuild-amazonlinux2:89dcc006-774e-4c3a-b5c5-dfb17f08c3dd",
+    Artifacts: {
+      Location: ""
+    },
+    BuildComplete: false,
+    BuildStatus: IN_PROGRESS,
+    Cache: {
+      Location: "amibldg-codebuild",
+      Type: S3
+    },
+    CurrentPhase: "QUEUED",
+    EncryptionKey: "arn:aws:kms:us-east-1:910039619599:alias/aws/s3",
+    Environment: {
+      ComputeType: BUILD_GENERAL1_SMALL,
+      EnvironmentVariables: [
+        {
+          Name: "ROLES",
+          Type: PLAINTEXT,
+          Value: "httpd"
+        },
+        {
+          Name: "SSH_USERNAME",
+          Type: PLAINTEXT,
+          Value: "ec2-user"
+        },
+        {
+          Name: "PLATFORM",
+          Type: PLAINTEXT,
+          Value: "amazonlinux2"
+        },
+        {
+          Name: "AMI_USERS",
+          Type: PLAINTEXT,
+          Value: ""
+        },
+        {
+          Name: "SSH_KEY_PAIR_NAME",
+          Type: PLAINTEXT,
+          Value: "amibldg-packer-key"
+        },
+        {
+          Name: "SECURITY_GROUP_ID",
+          Type: PLAINTEXT,
+          Value: "sg-0123d14c40bae9bec"
+        },
+        {
+          Name: "SSH_KEY_PAIR",
+          Type: PARAMETER_STORE,
+          Value: "/amibldg/amibldg-packer-key"
+        },
+        {
+          Name: "SUBNET_ID",
+          Type: PLAINTEXT,
+          Value: "subnet-03b1a887ac654b2f7"
+        },
+        {
+          Name: "SSH_INTERFACE",
+          Type: PLAINTEXT,
+          Value: "private_ip"
+        },
+        {
+          Name: "USER_NAME",
+          Type: PLAINTEXT,
+          Value: "go"
+        },
+        {
+          Name: "VPC_ID",
+          Type: PLAINTEXT,
+          Value: "vpc-095741bdf5c6de0c4"
+        },
+        {
+          Name: "SOURCE_AMI",
+          Type: PLAINTEXT,
+          Value: "ami-0c6b1d09930fac512"
+        },
+        {
+          Name: "AMI_REGIONS",
+          Type: PLAINTEXT,
+          Value: ""
+        }
+      ],
+      Image: "910039619599.dkr.ecr.us-east-1.amazonaws.com/amibldg-ecr:latest",
+      ImagePullCredentialsType: CODEBUILD,
+      PrivilegedMode: false,
+      Type: LINUX_CONTAINER
+    },
+    Id: "amibldg-codebuild-amazonlinux2:89dcc006-774e-4c3a-b5c5-dfb17f08c3dd",
+    Initiator: "AdminX/user",
+    Logs: {
+      DeepLink: "https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#logEvent:group=null;stream=null"
+    },
+    Phases: [{
+        DurationInSeconds: 0,
+        EndTime: 2019-05-30 16:50:33 +0000 UTC,
+        PhaseStatus: SUCCEEDED,
+        PhaseType: SUBMITTED,
+        StartTime: 2019-05-30 16:50:33 +0000 UTC
+      },{
+        PhaseStatus: ,
+        PhaseType: QUEUED,
+        StartTime: 2019-05-30 16:50:33 +0000 UTC
+      }],
+    ProjectName: "amibldg-codebuild-amazonlinux2",
+    QueuedTimeoutInMinutes: 480,
+    ServiceRole: "arn:aws:iam::910039619599:role/amibldg-codebuild-role",
+    Source: {
+      Buildspec: "",
+      GitCloneDepth: 1,
+      InsecureSsl: false,
+      Location: "https://github.com/myname/amibld-playbooks.git",
+      ReportBuildStatus: false,
+      Type: GITHUB
+    },
+    SourceVersion: "HEAD",
+    StartTime: 2019-05-30 16:50:33 +0000 UTC,
+    TimeoutInMinutes: 50,
+    VpcConfig: {
+      SecurityGroupIds: ["sg-0123d14c40bae9bec"],
+      Subnets: ["subnet-039208fee67264f8d","subnet-06a9d17ddce789bce","subnet-02437975b4b6f06dd"],
+      VpcId: "vpc-095741bdf5c6de0c4"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "body": "token=lU9XfS6skAlvjZpSDAzoH5Gn&team_id=T732UEEL9&team_domain=super-hacker&channel_id=CJ7QZ2631&channel_name=amibld&user_id=U74LPQB7Z&user_name=s.hacker65536&command=%2Fquery&text=aa&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT732UEEL9%2F636016260690%2FWYXfYMRjcpN1XxtRLb8OzFoJ&trigger_id=641088374113.241096490689.595bad8548c70d90a7fa9ca890985262",
+  "httpMethod": "POST",
+  "resource": "/amibld",
+  "queryStringParameters": null,
+  "requestContext": {
+    "httpMethod": "POST",
+    "requestId": "c6af9ac6-7b61-11e6-9a41-93e8deadbeef",
+    "path": "/amibld",
+    "extendedRequestId": null,
+    "resourceId": "123456",
+    "apiId": "1234567890",
+    "stage": "prod",
+    "resourcePath": "/amibld",
+    "identity": {
+      "accountId": null,
+      "apiKey": null,
+      "userArn": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoIdentityPoolId": null,
+      "userAgent": "Custom User Agent String",
+      "caller": null,
+      "cognitoAuthenticationType": null,
+      "sourceIp": "172.31.38.20",
+      "user": null
+    },
+    "accountId": "123456789012"
+  },
+  "headers": {
+    "X-Slack-Request-Timestamp": "1559006903",
+    "Content-Length": "359",
+    "Accept-Encoding": "gzip,deflate",
+    "X-Forwarded-Proto": "http",
+    "X-Forwarded-Port": "8080",
+    "X-Forwarded-For": "3.81.125.144",
+    "Accept": "application/json,*/*",
+    "User-Agent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+    "X-Amzn-Trace-Id": "Root=1-5cec8eb7-3a98d23d3d5fc92cba5e7395",
+    "Host": "apitest.aws-test.pw",
+    "X-Slack-Signature": "v0=6759968a9565d24a62767d48038990fbf753af0e479c36d32f45b3ab7d6fede5",
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  "stageVariables": null,
+  "path": "/amibld",
+  "pathParameters": null,
+  "isBase64Encoded": false
+}

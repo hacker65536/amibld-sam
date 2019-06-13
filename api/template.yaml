@@ -1,0 +1,167 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  amibldapi
+  
+  Sample SAM Template for api
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 5
+
+Parameters:
+  PROJECTPREFIX:
+    Type: String
+    Description: "projectprefix"
+    Default: amiblddev
+  SSMSLACKSIGSECNAME:
+    Type: String
+    Description: slackapp signing secrets
+    Default: "slacksigsec"
+  SSMSLACKTOKENNAME:
+    Type: String
+    Description: slackapp oauth token
+    Default: "slackoauthtoken"
+  SSMSLACKWEBHOOKNAME:
+    Type: String
+    Description: slackapp webhook
+    Default: "slackwebhook"
+  SSMSLACKCHANNELNAME:
+    Type: String
+    Description: slackapp post channel
+    Default: "slackchannel"
+
+
+Resources:
+  APIFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: api/
+      Handler: api
+      Runtime: go1.x
+      Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      Policies:
+        - AWSLambdaExecute
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - ssm:GetParameter*
+              Resource:
+                - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${PROJECTPREFIX}/*'
+            - Effect: Allow
+              Action:
+                - codebuild:StartBuild
+              Resource: 
+                - !Sub 'arn:aws:codebuild:${AWS::Region}:${AWS::AccountId}:project/${PROJECTPREFIX}*'
+            - Effect: Allow
+              Action:
+                - dynamodb:Scan
+                - dynamodb:UpdateItem
+                - dynamodb:PutItem
+                - dynamodb:DescribeTable
+              Resource: 
+                - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${DYNAMOTABLE}'
+            - Effect: Allow
+              Action:
+                - dynamodb:ListTables
+              Resource: "*"
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /amibld
+            Method: GET
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /amibld
+            Method: POST
+      Environment: 
+        Variables:
+          PROJECTPREFIX: !Ref PROJECTPREFIX
+          SSMSLACKSIGSECNAME: !Ref SSMSLACKSIGSECNAME
+          SSMSLACKTOKENNAME: !Ref SSMSLACKTOKENNAME
+          SSMSLACKWEBHOOKNAME: !Ref SSMSLACKWEBHOOKNAME
+          SSMSLACKCHANNELNAME: !Ref SSMSLACKCHANNELNAME
+          DYNAMOTABLE: !Ref DYNAMOTABLE
+          # DYNAMODB_ENDPOINT: http://127.0.0.1:8000
+  CWEFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: cwe/
+      Handler: cwe
+      Runtime: go1.x
+      Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      Policies:
+        - AWSLambdaExecute
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'ssm:GetParameter*'
+              Resource: "*"
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:Scan
+                - dynamodb:UpdateItem
+                - dynamodb:PutItem
+                - dynamodb:GetItem
+                - dynamodb:ListTables
+                - dynamodb:DescribeTable
+              Resource: "*"
+      Events:
+        CodeBuildEvent:
+          Type: CloudWatchEvent
+          Properties:
+            Pattern:
+              source:
+                - aws.codebuild
+              detail-type:
+                - CodeBuild Build State Change
+              detail:
+                build-status:
+                  - IN_PROGRESS
+                  - SUCCEEDED
+                  - FAILED
+                  - STOPPED
+      Environment:
+        Variables:
+          PROJECTPREFIX: !Ref PROJECTPREFIX
+          SSMSLACKSIGSECNAME: !Ref SSMSLACKSIGSECNAME
+          SSMSLACKTOKENNAME: !Ref SSMSLACKTOKENNAME
+          SSMSLACKWEBHOOKNAME: !Ref SSMSLACKWEBHOOKNAME
+          SSMSLACKCHANNELNAME: !Ref SSMSLACKCHANNELNAME
+          DYNAMOTABLE: !Ref DYNAMOTABLE
+          # DYNAMODB_ENDPOINT: http://127.0.0.1:8000
+  DYNAMOTABLE:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - AttributeName: id
+          AttributeType: S
+      KeySchema: 
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput: 
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  #  AmibldAPIAPI:
+  #    Description: "API Gateway endpoint URL for Prod environment for First Function"
+  #    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  APIFunction:
+    Description: "First Lambda Function ARN"
+    Value: !GetAtt APIFunction.Arn
+  APIFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt APIFunctionRole.Arn

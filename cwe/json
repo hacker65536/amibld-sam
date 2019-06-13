@@ -1,0 +1,5 @@
+{
+    "Name": "slack_webhookurl", 
+    "Value": "/https://hooks.slack.com/services/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", 
+    "Type": "SecureString" 
+}

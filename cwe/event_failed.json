@@ -1,0 +1,198 @@
+{
+    "version": "0",
+    "id": "f9881b47-f557-99f8-10af-f1982627bfe4",
+    "detail-type": "CodeBuild Build State Change",
+    "source": "aws.codebuild",
+    "account": "012345678901",
+    "time": "2019-05-30T09:02:04Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:codebuild:us-east-1:012345678901:build/amibldg-codebuild-amazonlinux2:d109b2de-f5d3-497e-acf3-c21c4e4c0c8a"
+    ],
+    "detail": {
+        "build-status": "FAILED",
+        "project-name": "amibldg-codebuild-amazonlinux2",
+        "build-id": "arn:aws:codebuild:us-east-1:012345678901:build/amibldg-codebuild-amazonlinux2:d109b2de-f5d3-497e-acf3-c21c4e4c0c8a",
+        "additional-information": {
+            "cache": {
+                "location": "amibldg-codebuild",
+                "type": "S3"
+            },
+            "timeout-in-minutes": 50,
+            "build-complete": true,
+            "initiator": "AdminX/user",
+            "build-start-time": "May 30, 2019 9:00:56 AM",
+            "source": {
+                "buildspec": "",
+                "location": "https://github.com/myname/amibld-playbooks.git",
+                "type": "GITHUB"
+            },
+            "source-version": "HEAD",
+            "artifact": {
+                "location": ""
+            },
+            "vpc-config": {
+                "security-group-ids": [
+                    "sg-0123d14c40bae9bec"
+                ],
+                "subnets": [
+                    {
+                        "build-fleet-az": "us-east-1b",
+                        "customer-az": "us-east-1b",
+                        "subnet-id": "subnet-039208fee67264f8d"
+                    },
+                    {
+                        "build-fleet-az": "us-east-1c",
+                        "customer-az": "us-east-1c",
+                        "subnet-id": "subnet-06a9d17ddce789bce"
+                    },
+                    {
+                        "build-fleet-az": "us-east-1a",
+                        "customer-az": "us-east-1a",
+                        "subnet-id": "subnet-02437975b4b6f06dd"
+                    }
+                ],
+                "vpc-id": "vpc-095741bdf5c6de0c4"
+            },
+            "environment": {
+                "image": "012345678901.dkr.ecr.us-east-1.amazonaws.com/amibldg-ecr:latest",
+                "privileged-mode": false,
+                "image-pull-credentials-type": "CODEBUILD",
+                "compute-type": "BUILD_GENERAL1_SMALL",
+                "type": "LINUX_CONTAINER",
+                "environment-variables": [
+                    {
+                        "name": "ROLES",
+                        "type": "PLAINTEXT",
+                        "value": "httpd"
+                    },
+                    {
+                        "name": "SSH_USERNAME",
+                        "type": "PLAINTEXT",
+                        "value": "ec2-user"
+                    },
+                    {
+                        "name": "PLATFORM",
+                        "type": "PLAINTEXT",
+                        "value": "amazonlinux2"
+                    },
+                    {
+                        "name": "AMI_USERS",
+                        "type": "PLAINTEXT",
+                        "value": ""
+                    },
+                    {
+                        "name": "SSH_KEY_PAIR_NAME",
+                        "type": "PLAINTEXT",
+                        "value": "amibldg-packer-key"
+                    },
+                    {
+                        "name": "SECURITY_GROUP_ID",
+                        "type": "PLAINTEXT",
+                        "value": "sg-0123d14c40bae9bec"
+                    },
+                    {
+                        "name": "SSH_KEY_PAIR",
+                        "type": "PARAMETER_STORE",
+                        "value": "/amibldg/amibldg-packer-key"
+                    },
+                    {
+                        "name": "SUBNET_ID",
+                        "type": "PLAINTEXT",
+                        "value": "subnet-03b1a887ac654b2f7"
+                    },
+                    {
+                        "name": "SSH_INTERFACE",
+                        "type": "PLAINTEXT",
+                        "value": "private_ip"
+                    },
+                    {
+                        "name": "USER_NAME",
+                        "type": "PLAINTEXT",
+                        "value": "go"
+                    },
+                    {
+                        "name": "VPC_ID",
+                        "type": "PLAINTEXT",
+                        "value": "vpc-095741bdf5c6de0c4"
+                    },
+                    {
+                        "name": "SOURCE_AMI",
+                        "type": "PLAINTEXT",
+                        "value": "ami-0c6b1d09930fac512"
+                    },
+                    {
+                        "name": "AMI_REGIONS",
+                        "type": "PLAINTEXT",
+                        "value": ""
+                    }
+                ]
+            },
+            "network-interface": {
+                "eni-id": "eni-05f502bf700cac9d5",
+                "subnet-id": "subnet-06a9d17ddce789bce"
+            },
+            "logs": {
+                "group-name": "/aws/codebuild/amibldg-codebuild-amazonlinux2",
+                "stream-name": "d109b2de-f5d3-497e-acf3-c21c4e4c0c8a",
+                "deep-link": "https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#logEvent:group=/aws/codebuild/amibldg-codebuild-amazonlinux2;stream=d109b2de-f5d3-497e-acf3-c21c4e4c0c8a"
+            },
+            "phases": [
+                {
+                    "phase-context": [],
+                    "start-time": "May 30, 2019 9:00:56 AM",
+                    "end-time": "May 30, 2019 9:00:56 AM",
+                    "duration-in-seconds": 0,
+                    "phase-type": "SUBMITTED",
+                    "phase-status": "SUCCEEDED"
+                },
+                {
+                    "phase-context": [],
+                    "start-time": "May 30, 2019 9:00:56 AM",
+                    "end-time": "May 30, 2019 9:00:58 AM",
+                    "duration-in-seconds": 2,
+                    "phase-type": "QUEUED",
+                    "phase-status": "SUCCEEDED"
+                },
+                {
+                    "phase-context": [
+                        ": "
+                    ],
+                    "start-time": "May 30, 2019 9:00:58 AM",
+                    "end-time": "May 30, 2019 9:01:57 AM",
+                    "duration-in-seconds": 58,
+                    "phase-type": "PROVISIONING",
+                    "phase-status": "SUCCEEDED"
+                },
+                {
+                    "phase-context": [
+                        "Decrypted Variables Error: parameter does not exist: /amibldg/amibldg-packer-key"
+                    ],
+                    "start-time": "May 30, 2019 9:01:57 AM",
+                    "end-time": "May 30, 2019 9:01:57 AM",
+                    "duration-in-seconds": 0,
+                    "phase-type": "DOWNLOAD_SOURCE",
+                    "phase-status": "FAILED"
+                },
+                {
+                    "phase-context": [
+                        ": "
+                    ],
+                    "start-time": "May 30, 2019 9:01:57 AM",
+                    "end-time": "May 30, 2019 9:02:02 AM",
+                    "duration-in-seconds": 4,
+                    "phase-type": "FINALIZING",
+                    "phase-status": "SUCCEEDED"
+                },
+                {
+                    "start-time": "May 30, 2019 9:02:02 AM",
+                    "phase-type": "COMPLETED"
+                }
+            ],
+            "queued-timeout-in-minutes": 480
+        },
+        "current-phase": "COMPLETED",
+        "current-phase-context": "[: ]",
+        "version": "1"
+    }
+}

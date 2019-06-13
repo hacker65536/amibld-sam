@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  amibldcwe
+  
+  Sample SAM Template for cwe
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 5
+    #    Environment:
+    #      Variables:
+    #        PROJECTPREFIX: !Ref PROJECTPREFIX
+    #        SSMSLACKSIGSECNAME: !Ref SSMSLACKSIGSECNAME
+    #        SSMSLACKTOKENNAME: !Ref SSMSLACKTOKENNAME
+    #
+
+Parameters:
+  PROJECTPREFIX:
+    Type: String
+    Description: "projectprefix"
+    Default: amibldg
+  SSMSLACKSIGSECNAME:
+    Type: String
+    Description: slackapp signing secrets
+    Default: "slacksigsec"
+  SSMSLACKTOKENNAME:
+    Type: String
+    Description: slackapp oauth token
+    Default: "slackoauthtoken"
+
+Resources:
+  CweFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: cwe/
+      Handler: cwe
+      Runtime: go1.x
+      Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      Policies:
+        - AWSLambdaExecute
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'ssm:GetParameter*'
+              Resource: "*"
+      Events:
+        CatchAll:
+          Type: CloudWatchEvent
+          Properties:
+            Pattern:
+              source:
+                - aws.codebuild
+              detail-type:
+             #  - CodeBuild Build Phase Change
+                - CodeBuild Build State Change
+              detail:
+                build-status:
+                  - IN_PROGRESS
+                  - SUCCEEDED
+                  - FAILED
+                  - STOPPED
+              # completed-phase:
+              #   - SUBMITTED
+              #   - PROVISIONING
+              #   - DOWNLOAD_SOURCE
+              #   - INSTALL
+              #   - PRE_BUILD
+              #   - BUILD
+              #   - POST_BUILD
+              #   - UPLOAD_ARTIFACTS
+              #   - FINALIZING
+              # completed-phase-status:
+              #   - TIMED_OUT
+              #   - STOPPED
+              #   - FAILED
+              #   - SUCCEEDED
+              #   - FAULT
+              #   - CLIENT_ERROR
+
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PROJECTPREFIX: !Ref PROJECTPREFIX
+          SSMSLACKSIGSECNAME: !Ref SSMSLACKSIGSECNAME
+          SSMSLACKTOKENNAME: !Ref SSMSLACKTOKENNAME
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  #  CweAPI:
+  #    Description: "API Gateway endpoint URL for Prod environment for First Function"
+  #    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  CweFunction:
+    Description: "First Lambda Function ARN"
+    Value: !GetAtt CweFunction.Arn
+  CweFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt CweFunctionRole.Arn

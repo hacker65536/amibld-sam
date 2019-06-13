@@ -1,0 +1,114 @@
+{
+    "resource": "/amibld",
+    "path": "/amibld",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "application/json,*/*",
+        "Accept-Encoding": "gzip,deflate",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Host": "faefeaf384.execute-api.ap-northeast-1.amazonaws.com",
+        "User-Agent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+        "Via": "1.1 c8c9787916110356915bbdbddd0a32d6.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "D3RI3YBMRowVcrRgIedDwFht7P76Rww8J3omNVRs6cqwMRyQTDCPpg==",
+        "X-Amzn-Trace-Id": "Root=1-5d007c55-bb86d06aff5964af1c97aaa9",
+        "X-Forwarded-For": "54.237.210.44, 70.132.60.155",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https",
+        "X-Slack-Request-Timestamp": "1560312916",
+        "X-Slack-Signature": "v0=787e893547e75cb88a7e79baf88732b8e434ca720744e8f0837c9c801b59929c"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "application/json,*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip,deflate"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/x-www-form-urlencoded"
+        ],
+        "Host": [
+            "faefeaf384.execute-api.ap-northeast-1.amazonaws.com"
+        ],
+        "User-Agent": [
+            "Slackbot 1.0 (+https://api.slack.com/robots)"
+        ],
+        "Via": [
+            "1.1 c8c9787916110356915bbdbddd0a32d6.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "D3RI3YBMRowVcrRgIedDwFht7P76Rww8J3omNVRs6cqwMRyQTDCPpg=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-5d007c55-bb86d06aff5964af1c97aaa9"
+        ],
+        "X-Forwarded-For": [
+            "54.237.210.44, 70.132.60.155"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ],
+        "X-Slack-Request-Timestamp": [
+            "1560312916"
+        ],
+        "X-Slack-Signature": [
+            "v0=787e893547e75cb88a7e79baf88732b8e434ca720744e8f0837c9c801b59929c"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "accountId": "000000000000",
+        "resourceId": "v99bd2",
+        "stage": "Prod",
+        "requestId": "af3b2f70-8cc8-11e9-8c80-afcb4d7faf1e",
+        "identity": {
+            "cognitoIdentityPoolId": "",
+            "accountId": "",
+            "cognitoIdentityId": "",
+            "caller": "",
+            "apiKey": "",
+            "accessKey": "",
+            "sourceIp": "54.237.210.44",
+            "cognitoAuthenticationType": "",
+            "cognitoAuthenticationProvider": "",
+            "userArn": "",
+            "userAgent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+            "user": ""
+        },
+        "resourcePath": "/amibld",
+        "authorizer": null,
+        "httpMethod": "POST",
+        "apiId": "faefeaf384"
+    },
+    "body": "token=aeffeafAdfaefaeg24G&team_id=T1C614H4L&team_domain=mycompany-infra&channel_id=GJNJY7JNL&channel_name=privategroup&user_id=U2JGCTA81&user_name=go&command=%2Famibld&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT1C614H4L%2F662439005440%2F0pbOoedmYmrMlsrX7lbKxHVw&trigger_id=651018053762.46205153156.71acef012d5e3b2b6c64a22113beca9d"
+}
